@@ -36,17 +36,20 @@ function read(fileName, res) {
 };
 
 function importCsvFile(req, res) {
+    console.log('req', req.body);
+    var url = req.body.url;
+    console.log('PARAMS ', url);
     const file = '/Users/aflores/Desktop/corona_data/coro_back/controllers/time_series_19-covid-Confirmed.csv';
-    console.log('file path ', file);
+    console.log('file path ', url);
     try {
-        return read(file, res)
+        return read(url, res)
             .then(textFileData => {
-                console.log('file ', file);
+                console.log('file ', url);
                 const result = papa.parse(textFileData, {
                     header: true,
                     dynamicTyping: true,
                 });
-                console.log('RESULT ', result.data);
+                // console.log('RESULT ', result.data);
                 // return result.data;
                 res.status(200).send({
                     message: 'Success',
