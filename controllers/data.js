@@ -60,36 +60,8 @@ function importCsvFile(req, res) {
 
 }
 
-function parse(req, res) {
-    var params = req.body;
-    // const file = fs.createReadStream('time_series_19-covid-Confirmed.csv');
-    console.log('hola mundo ', file);
-    var content = fs.readFileSync(file, "utf8");
-    console.log('content ', content);
-
-
-    var count = 0; // cache the running count
-    papa.parse(content, {
-        download: true,
-        worker: true, // Don't bog down the main thread if its a big file
-        step: function (result) {
-            console.log('inside step');
-            // do stuff with result
-        },
-        complete: function (results, file) {
-            console.log('parsing complete read', count, 'records.');
-        }
-    });
-
-    res.status(200).send({
-        message: 'Data',
-        request: params
-    });
-}
-
 //exportacion
 module.exports = {
     test,
-    parse,
     importCsvFile
 }
