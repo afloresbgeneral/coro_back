@@ -36,10 +36,8 @@ function read(fileName, res) {
 };
 
 function importCsvFile(req, res) {
-    console.log('req', req.body);
-    var url = req.body.url;
-    console.log('PARAMS ', url);
-    const file = '/Users/aflores/Desktop/corona_data/coro_back/controllers/time_series_19-covid-Confirmed.csv';
+    console.log('req', req);
+    var url = req.query.url;
     console.log('file path ', url);
     try {
         return read(url, res)
